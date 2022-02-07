@@ -5,11 +5,20 @@
 #pragma once
 
 #include <boost/asio.hpp>
+#include <memory>
+#include <thread>
+#include <mutex>
+#include <deque>
 #include <optional>
-#include <queue>
-#include <unordered_set>
+#include <vector>
 #include <iostream>
-#include <string>
+#include <algorithm>
+#include <chrono>
+#include <cstdint>
+
+#ifdef _WIN32
+#define _WIN32_WINNT 0x0A00
+#endif
 
 namespace io = boost::asio;
 using tcp = io::ip::tcp;
