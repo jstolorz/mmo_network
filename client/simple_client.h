@@ -31,7 +31,7 @@ int start_client(){
 
     std::thread thr_context = std::thread([&](){ context.run(); });
 
-    tcp::endpoint endpoint(io::ip::make_address("93.184.216.34",ec),80);
+    tcp::endpoint endpoint(io::ip::make_address("127.0.0.1",ec),17234);
 
     tcp::socket socket(context);
 
@@ -48,6 +48,10 @@ int start_client(){
                     "GET /index.html HTTP/1.1\r\n"
                     "Host: example.com\r\n"
                     "Connection: close\r\n\r\n";
+
+
+            //std::string request = "WAVSTART cowbell.wav 0 0 ";
+            //std::string request = "URL www.google.com";
 
             socket.write_some(io::buffer(request.data(), request.size()),ec);
 
