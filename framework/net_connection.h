@@ -20,7 +20,7 @@ namespace bluesoft {
             };
 
         public:
-            connection(owner parent, io::io_context &asio_context, tcp::socket socket, tsqueue<T> &q_in)
+            connection(owner parent, io::io_context &asio_context, tcp::socket socket, tsqueue<owned_message<T>>& q_in)
                     : m_asio_context(asio_context), m_socket(std::move(socket)), m_q_message_in(q_in) {
                 m_n_owner_type = parent;
             }
@@ -160,7 +160,7 @@ namespace bluesoft {
         private:
             tcp::socket m_socket;
             io::io_context &m_asio_context;
-            tsqueue<message<T>> &m_q_message_out;
+            tsqueue<message<T>> m_q_message_out;
             tsqueue<owned_message<T>> &m_q_message_in;
             message<T> m_msg_temporary_in;
             owner m_n_owner_type = owner::server;
